@@ -1,6 +1,6 @@
 # FLUX
 
-This is the website for FLUX (<https://fluxaz.org>), made with Astro, Svelte with Runes, and Tailwind CSS.
+This is the source for FLUX (<https://fluxaz.org>), made with Astro, Svelte with Runes, and Tailwind CSS.
 
 ## Development
 
@@ -14,7 +14,7 @@ To run the development server:
    docker compose up --watch
     ```
 
-4. Open your browser and go to <http://localhost:4321> to view the site. The site will automatically reload when you make changes to the source files.
+4. Open your browser and go to <http://localhost:4321> to view the site. The site will automatically reload when you make changes to the source files. Please develop on a new branch.
 5. To stop the server, press `Ctrl+C` in the terminal where the command is running.
 
 ## Deployment

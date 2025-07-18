@@ -2,7 +2,7 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "command": "docker compose up -d && docker compose exec -it scr bash",
+      "command": "docker compose up -d && docker compose exec -it flux bash",
       "name": "Development server",
       "request": "launch",
       "type": "node-terminal"

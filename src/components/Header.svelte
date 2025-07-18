@@ -107,6 +107,7 @@
       else {
         document.querySelector("header").classList.remove(expandedHeight);
         if (!hideNav) document.querySelector("header").classList.remove("shadow-2xl");
+      }
     }
     if (showing) {
       document.querySelector("#nav-menu").classList.remove("opacity-0", "mt-0");
