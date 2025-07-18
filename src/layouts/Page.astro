@@ -1,0 +1,99 @@
+---
+import Header from "../components/Header.svelte";
+import Footer from "../components/Footer.astro";
+import { Icon } from "astro-icon/components";
+
+const {
+  title = "Home",
+  mainClasses = "",
+  year = new Date().getFullYear(),
+  base = "",
+} = Astro.props;
+---
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <meta name="turbo-cache-control" content="no-cache" />
+    <link rel="icon" href={base + "/logo.ico"} type="image/x-icon" />
+    <title>{title} | FLUX</title>
+    <meta
+      name="description"
+      content="Guiding Each Other, Growing Together, Building Azerbaijan's Future"
+    />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <style>
+      html,
+      body {
+        font-family: Lato, sans-serif;
+        scrollbar-gutter: stable;
+      }
+      img,
+      svg,
+      video,
+      canvas,
+      audio,
+      iframe,
+      embed,
+      object {
+        display: inline;
+      }
+    </style>
+    <script>
+      import * as Turbo from "@hotwired/turbo";
+      Turbo.start();
+    </script>
+    <script is:inline>
+      const theme = (() => {
+        if (
+          typeof localStorage !== "undefined" &&
+          localStorage.getItem("theme")
+        ) {
+          return localStorage.getItem("theme");
+        }
+        if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          return "dark";
+        }
+        return "light";
+      })();
+
+      if (theme === "light") {
+        document.documentElement.classList.remove("dark");
+      } else {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+  </head>
+  <body
+    class="py-4 a:break-all transition-all flex flex-col min-h-screen bg-orange-100 dark:bg-stone-900 border-stone-900 dark:border-orange-100 text-stone-900 dark:text-stone-100"
+  >
+    <Header client:load base={base}>
+      <Icon
+        id="theme-dark"
+        name="ic:round-dark-mode"
+        slot="theme"
+        class="w-0 dark:w-full opacity-0 dark:opacity-100 text-3xl"
+      />
+      <Icon
+        id="theme-light"
+        name="ic:round-light-mode"
+        slot="theme"
+        class="w-full dark:w-0 opacity-100 dark:opacity-0 text-3xl"
+      />
+      <Icon id="nav-icon" name="ic:round-menu" slot="menu" class="text-3xl" />
+      <Icon name="ic:round-close" slot="close" class="text-3xl" />
+      <div
+        slot="title"
+        class="text-xl sm:text-2xl font-bold pt-8 text-gray-900 dark:text-gray-100"
+      >
+        <slot name="breadcrumb" />
+      </div>
+    </Header>
+    <main class={"mx-4 flex-grow items-center " + mainClasses}>
+      <slot />
+    </main>
+    <Footer {year} />
+  </body>
+</html>

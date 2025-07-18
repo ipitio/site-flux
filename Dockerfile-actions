@@ -1,0 +1,5 @@
+FROM node:lts-alpine
+WORKDIR /
+COPY dist /dist
+COPY node_modules /node_modules
+ENV PATH=/node_modules/.bin:$PATH

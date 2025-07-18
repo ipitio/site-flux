@@ -1,0 +1,98 @@
+---
+export interface Props {
+  base: string;
+}
+
+const { base } = Astro.props;
+import { Icon } from "astro-icon/components";
+---
+
+<div class="-mt-[8em] -ml-[1em] -mr-[1em]">
+  <div
+    class="flex flex-col gap-4 justify-center text-start bg-[url('/arch.webp')] bg-cover bg-center bg-no-repeat bg-fixed h-[102vh] z-10 relative block
+        before:content-['']
+        before:absolute
+        before:inset-0
+        before:block
+        before:bg-gradient-to-b
+        before:from-transparent
+        before:via-transparent
+        before:to-orange-100
+        dark:before:to-stone-900
+        before:opacity-100
+        before:z-[-5]"
+  >
+    <div
+      class="ring-2 ring-orange-200/50 dark:ring-orange-950/50 rounded-2xl backdrop-blur-2xl mx-4 sm:mx-0 sm:w-[50%] sm:ml-[25%] sm:shadow-xl/30 p-4 absolute bottom-6 sm:bottom-10 text-center"
+    >
+      <h1
+        style="font-family: 'Rubik Mono One';"
+        class="text-shadow-lg mb-4 text-7xl md:text-8xl font-black leading-none tracking-tight
+            bg-clip-text
+            text-transparent
+            bg-gradient-to-r
+            from-blue-600
+            via-red-700
+            to-green-500
+            animate-gradient-x
+            drop-shadow-[0_4px_4px_rgba(0,0,0)]"
+      >
+        FLUX
+      </h1>
+      <h2 class="text-xl md:text-3xl font-black mb-5 mx-5">
+        Guiding Each Other, Growing Together, Building Azerbaijan's Future
+      </h2>
+      <a href={base + "/contact"}>
+        <button
+          type="button"
+          class="w-full h-18 text-white text-2xl bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-black rounded-2xl px-5 py-5 text-center mb-2"
+        >
+          <Icon name="ic:round-chat-bubble" class="w-8 h-8 inline mb-0.5" />
+          Contact Us
+        </button>
+      </a>
+    </div>
+  </div>
+  <p class="prose dark:prose-invert lg:text-2xl p-4 mx-4 sm:mx-[25%] lg:mx-[33%] 2xl:ml-[33%]">
+    Fireborne Leaders United for eXcellence (FLUX) is a mentorship initiative
+    dedicated to guiding Azerbaijani youth toward academic and professional
+    success. We connect students with experienced mentors who have navigated the
+    challenges of studying abroad, offering personalized guidance on university
+    applications, career development, and cultural adaptation. Through
+    mentorship, workshops, webinars, and a supportive community, FLUX empowers
+    the next generation of Azerbaijani leaders to excel globally while fostering
+    a strong sense of national identity and contribution.
+  </p>
+  <div class="mx-4 sm:mx-0 my-4 flex flex-col sm:flex-row gap-4 justify-center">
+    <div
+      class="mx-4 sm:mx-0 ring-2 ring-blue-500/50 rounded-2xl p-4 text-center"
+    >
+      <h1 class="text-2xl font-bold">Who We Are</h1>
+      <h2 class="text-xl">Our mission and vision</h2>
+      <a href={base + "/about"}>
+        <button
+          type="button"
+          class="w-full text-white text-2xl bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 shadow-lg shadow-blue-500/50 dark:shadow-lg dark:shadow-blue-800/80 font-black rounded-2xl p-5 text-center mt-5 mb-2"
+        >
+          <Icon name="ic:round-people-alt" class="w-8 h-8 inline mb-0.5" />
+          Learn About Us
+        </button>
+      </a>
+    </div>
+    <div
+      class="mx-4 sm:mx-0 ring-2 ring-green-500/50 rounded-2xl p-4 text-center"
+    >
+      <h1 class="text-2xl font-bold">Grow With Us</h1>
+      <h2 class="text-xl">As a mentor or mentee</h2>
+      <a href={base + "/join"}>
+        <button
+          type="button"
+          class="w-full text-white text-2xl bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-black rounded-2xl p-5 text-center mt-5 mb-2"
+        >
+          <Icon name="ic:round-group-add" class="w-8 h-8 inline mb-0.5" />
+          Get Involved
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

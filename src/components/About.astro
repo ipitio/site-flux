@@ -1,0 +1,99 @@
+---
+export interface Props {
+  base: string;
+}
+
+const { base } = Astro.props;
+import { Icon } from "astro-icon/components";
+---
+
+<div>
+  <div class="p-4 mx-4 sm:mx-[25%]">
+    <h1 class="text-3xl lg:text-5xl font-bold mb-10 sm:mb-16 text-center">
+      About Us
+    </h1>
+    <h2 class="text-2xl lg:text-4xl font-bold mb-4">Our Mission</h2>
+    <p
+      class="prose dark:prose-invert lg:text-2xl mb-8 mx-4"
+    >
+      At Fireborne Leaders United for Excellence (FLUX), we believe in the power
+      of knowledge, mentorship, and community. Our mission is to guide and
+      support Azerbaijani youth in their pursuit of world-class education and
+      meaningful careers--regardless of their chosen field--because Azerbaijan
+      needs leaders in every domain, both at home and on the global stage. We
+      connect high school students or college students with those who have
+      walked the same path--mentors who understand the challenges of studying
+      abroad and share the same dreams. Through mentorship, shared experiences,
+      and support, we help shape the next generation of Azerbaijani leaders who
+      will not only excel globally but also give back to their homeland.
+    </p>
+    <h2 class="text-2xl lg:text-4xl font-bold mb-4">Our Vision</h2>
+    <p
+      class="prose dark:prose-invert lg:text-2xl mb-8 mx-4"
+    >
+      We dream of an Azerbaijan where every young mind, no matter where they
+      are, has the support and confidence to reach their fullest potential. A
+      future where those who have achieved success extend a hand to lift others
+      up. FLUX is more than a mentorship program--it is a movement, just as our
+      name suggests, built on the love for our country, a commitment to its
+      future, and a belief that every Azerbaijani deserves the chance to shine
+      on the world stage while staying deeply connected to their roots.
+    </p>
+    <h2 class="text-2xl lg:text-4xl font-bold mb-4">Our Story</h2>
+    <p
+      class="prose dark:prose-invert lg:text-2xl mx-4"
+    >
+      FLUX was sparked by the undeniable truth that Azerbaijan needs
+      representation in every field, both at home and abroad. We see the flaws
+      in our education system, and we firmly believe that education is the key
+      to changing everything. Unfortunately, the current state of education in
+      Azerbaijan doesn't always equip our youth with the tools they need to
+      succeed on the global stage, and many face barriers when it comes to
+      accessing world-class opportunities. <br /><br /> That's why FLUX was created--to
+      help as many high school students as possible pursue education abroad and provide
+      mentorship to college students, connecting them with fellow Azerbaijanis who
+      have already walked the path in their field. We aim to foster a supportive
+      community of Azerbaijanis who can guide the next generation of leaders, share
+      their experiences, and offer real-world advice. <br /><br /> Guidance and mentorship
+      shouldn't come with such a high price, especially when we see misleading programs
+      marketed back home. As experienced Azerbaijanis across the globe, we are here
+      to make a difference. FLUX is about empowering the next generation of Azerbaijani
+      leaders, helping them grow, succeed, and ultimately give back to our country.
+      Just like in 1918, we believe that the new Azerbaijan will be shaped by those
+      who studied abroad. It is through education and unity that we will create a
+      brighter future for all.
+    </p>
+  </div>
+  <div class="my-4 flex flex-col sm:flex-row gap-4 justify-center">
+    <div
+      class="mx-4 sm:mx-0 ring-2 ring-red-500/50 rounded-2xl p-4 text-center"
+    >
+      <h1 class="text-2xl font-bold">Send A Message</h1>
+      <h2 class="text-xl">We'll get it immediately</h2>
+      <a href={base + "/contact"}>
+        <button
+          type="button"
+          class="w-full text-white text-2xl bg-gradient-to-r from-red-400 via-red-500 to-red-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 shadow-lg shadow-red-500/50 dark:shadow-lg dark:shadow-red-800/80 font-black rounded-2xl p-5 text-center mt-5 mb-2"
+        >
+          <Icon name="ic:round-chat-bubble" class="w-8 h-8 inline mb-0.5" />
+          Contact Us
+        </button>
+      </a>
+    </div>
+    <div
+      class="mx-4 sm:mx-0 ring-2 ring-green-500/50 rounded-2xl p-4 text-center"
+    >
+      <h1 class="text-2xl font-bold">Grow With Us</h1>
+      <h2 class="text-xl">As a mentor or mentee</h2>
+      <a href={base + "/join"}>
+        <button
+          type="button"
+          class="w-full text-white text-2xl bg-gradient-to-r from-green-400 via-green-500 to-green-600 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-green-300 dark:focus:ring-green-800 shadow-lg shadow-green-500/50 dark:shadow-lg dark:shadow-green-800/80 font-black rounded-2xl p-5 text-center mt-5 mb-2"
+        >
+          <Icon name="ic:round-group-add" class="w-8 h-8 inline mb-0.5" />
+          Get Involved
+        </button>
+      </a>
+    </div>
+  </div>
+</div>

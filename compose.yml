@@ -1,0 +1,28 @@
+services:
+  flux:
+    container_name: flux
+    build: .
+    command: npm run start
+    develop:
+      watch:
+        - action: sync
+          path: ./src
+          target: /app/src
+        - action: sync
+          path: ./public
+          target: /app/public
+        - action: rebuild
+          path: package.json
+        - action: rebuild
+          path: astro.config.mjs
+        - action: rebuild
+          path: svelte.config.js
+        - action: rebuild
+          path: tailwind.config.mjs
+        - action: rebuild
+          path: tsconfig.json
+    ports:
+      - "4321:4321"
+    volumes:
+      - ./.astro:/app/.astro
+

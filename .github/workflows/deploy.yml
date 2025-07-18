@@ -1,0 +1,22 @@
+name: Trigger Butter Deployment
+
+on:
+  push:
+    branches:
+      - master
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Repository Dispatch
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.IPITIO_PAT }}
+          repository: ipitio/BEN
+          event-type: site

@@ -1,0 +1,13 @@
+---
+export interface Props {
+  year: string;
+}
+
+const { year } = Astro.props;
+---
+
+<footer
+  class="flex flex-col gap-2 items-center justify-center p-4 font-normal text-center"
+>
+  <p>© {year} FLUX. All rights reserved.</p>
+</footer>
