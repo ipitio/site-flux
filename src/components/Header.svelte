@@ -27,6 +27,7 @@
   });
 
   export let base = "";
+  export let title = "Home";
   let lastScrollTop = 0; //last scroll position
   let hideNav = false;
   let showMenu = 0; //show menu icon on mobile
@@ -152,7 +153,7 @@
             on:click={() => handleMenu(false)}
             on:keypress={() => handleMenu(false)}
           >
-            <slot name="close" />
+            <Icon name="ic:round-close" class="text-3xl" />
           </nav>
         {:else}
           <nav
@@ -160,7 +161,7 @@
             on:click={() => handleMenu(true)}
             on:keypress={() => handleMenu(true)}
           >
-            <slot name="menu" />
+            <Icon id="nav-icon" name="ic:round-menu" class="text-3xl" />
           </nav>
         {/if}
       {:else}
@@ -175,8 +176,20 @@
       {/if}
 
       <button on:click={toggleTheme} title="Theme" class="pb-1">
-        <slot name="theme" />
+        <Icon
+          id="theme-dark"
+          name="ic:round-dark-mode"
+          class="w-0 dark:w-full opacity-0 dark:opacity-100 text-3xl"
+        />
+        <Icon
+          id="theme-light"
+          name="ic:round-light-mode"
+          class="w-full dark:w-0 opacity-100 dark:opacity-0 text-3xl"
+        />
       </button>
+    </div>
+    <div class="text-xl sm:text-2xl font-bold pt-8 text-gray-900 dark:text-gray-100">
+      <p class="w-full text-center text-3xl sm:text-4xl">{title}</p>
     </div>
     <!-- mobile nav menu-->
     <div
