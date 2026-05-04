@@ -15,8 +15,9 @@ jobs:
 
     steps:
       - name: Repository Dispatch
-        uses: peter-evans/repository-dispatch@v3
+        uses: peter-evans/repository-dispatch@v4
         with:
           token: ${{ secrets.IPITIO_PAT }}
           repository: ipitio/BEN
           event-type: site
+          client-payload: '{"site":"flux"}'

@@ -73,13 +73,13 @@ const pageTitle =
     </script>
   </head>
 
-  <body class="min-h-screen bg-[var(--surface-base)] text-[var(--ink)] antialiased selection:bg-amber-200 selection:text-stone-950 dark:selection:bg-amber-500/30 dark:selection:text-stone-50">
+  <body class="flex min-h-screen flex-col bg-[var(--surface-base)] text-[var(--ink)] antialiased selection:bg-amber-200 selection:text-stone-950 dark:selection:bg-amber-500/30 dark:selection:text-stone-50">
     <div class="page-gradient pointer-events-none fixed inset-0 -z-10 opacity-90"></div>
     <div class="page-grid pointer-events-none fixed inset-0 -z-10"></div>
 
     <SiteHeader client:load transition:persist ctaHref="/contact" ctaLabel="Contact" currentPath={Astro.url.pathname} items={organization.navigation} label={organization.sublabel} shortName={organization.shortName} />
 
-    <main class={`mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-7xl flex-col gap-16 px-4 pb-16 pt-28 sm:px-6 lg:px-8 ${mainClass}`}>
+    <main class={`mx-auto flex w-full max-w-7xl flex-1 flex-col gap-16 px-4 pb-16 pt-28 sm:px-6 lg:px-8 ${mainClass}`}>
       <slot />
     </main>
 
