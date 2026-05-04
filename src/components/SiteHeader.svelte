@@ -99,6 +99,12 @@
     isHidden = false;
   }
 
+  function toggleMenu(event: MouseEvent) {
+    event.stopPropagation();
+    suppressHide();
+    isMenuOpen = !isMenuOpen;
+  }
+
   function handleNavAction() {
     suppressHide();
     closeMenu();
@@ -227,7 +233,7 @@
           {/if}
         </button>
 
-        <button aria-expanded={isMenuOpen} aria-label="Toggle navigation menu" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-white/60 leading-none text-[var(--ink)] transition hover:border-amber-500/40 hover:text-amber-700 dark:bg-black/20 dark:hover:text-amber-200 md:hidden" onclick={() => (isMenuOpen = !isMenuOpen)} type="button">
+        <button aria-expanded={isMenuOpen} aria-label="Toggle navigation menu" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-white/60 leading-none text-[var(--ink)] transition hover:border-amber-500/40 hover:text-amber-700 dark:bg-black/20 dark:hover:text-amber-200 md:hidden" onclick={toggleMenu} type="button">
           {#if isMenuOpen}
             <svg aria-hidden="true" class="block h-5 w-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
               <path d="M18 6 6 18"></path>

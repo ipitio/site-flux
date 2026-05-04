@@ -18,17 +18,17 @@ const {
 }: Props = Astro.props;
 
 const overlays = {
-  amber: "from-stone-950/88 via-stone-950/64 to-amber-900/62",
-  emerald: "from-slate-950/82 via-slate-950/58 to-emerald-900/55",
-  rose: "from-slate-950/82 via-slate-950/58 to-rose-900/55",
-  sky: "from-slate-950/82 via-slate-950/58 to-sky-900/55",
+  amber: "from-stone-950/88 via-stone-950/64 to-amber-900/62 dark:from-stone-950/72 dark:via-stone-950/36 dark:to-amber-900/38",
+  emerald: "from-slate-950/82 via-slate-950/58 to-emerald-900/55 dark:from-slate-950/68 dark:via-slate-950/34 dark:to-emerald-900/36",
+  rose: "from-slate-950/82 via-slate-950/58 to-rose-900/55 dark:from-slate-950/68 dark:via-slate-950/34 dark:to-rose-900/36",
+  sky: "from-slate-950/82 via-slate-950/58 to-sky-900/55 dark:from-slate-950/68 dark:via-slate-950/34 dark:to-sky-900/36",
 } as const;
 
 const eyebrowStyles = {
-  amber: "text-amber-100",
-  emerald: "text-emerald-100",
-  rose: "text-rose-100",
-  sky: "text-sky-100",
+  amber: "text-amber-700 dark:text-amber-200",
+  emerald: "text-emerald-700 dark:text-emerald-200",
+  rose: "text-rose-700 dark:text-rose-200",
+  sky: "text-sky-700 dark:text-sky-200",
 } as const;
 ---
 
@@ -39,16 +39,14 @@ const eyebrowStyles = {
     <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-white/10 to-transparent mix-blend-screen"></div>
   </div>
 
-  <div class="section-fade relative max-w-[46rem] px-6 py-14 text-white sm:px-10 lg:px-14 lg:py-[4.75rem]">
-    <div class="hero-copy-shell relative overflow-hidden rounded-[2rem] border border-white/12 p-6 sm:p-8 lg:p-10">
-      <div class="pointer-events-none absolute inset-y-0 right-0 w-36 bg-gradient-to-l from-white/10 to-transparent opacity-70"></div>
-
+  <div class="section-fade relative flex justify-center px-6 py-14 sm:px-10 lg:px-14 lg:py-[4.75rem]">
+    <div class="hero-copy-shell relative w-full max-w-[42rem] overflow-hidden rounded-[2rem] border border-white/25 bg-[rgb(var(--surface-card)/0.94)] p-6 text-center shadow-[0_28px_80px_rgba(20,14,8,0.2)] backdrop-blur-xl backdrop-saturate-150 dark:border-white/20 dark:bg-black/12 dark:shadow-none sm:p-8 lg:p-10">
       <div class="relative space-y-5">
         <p class={`text-sm font-bold uppercase tracking-[0.28em] ${eyebrowStyles[tone]}`}>{eyebrow}</p>
-        <h1 class={`font-brand text-[clamp(3.35rem,7vw,5.8rem)] uppercase tracking-[0.08em] leading-[0.9] text-balance ${gradientTitle ? "hero-brand-gradient drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)]" : "text-white"}`}>
+        <h1 class={`mx-auto max-w-[10ch] font-brand text-[clamp(3.35rem,7vw,5.8rem)] uppercase tracking-[0.08em] leading-[0.9] text-balance ${gradientTitle ? "hero-brand-gradient" : "text-[var(--ink)] dark:text-white"}`}>
           {title}
         </h1>
-        <p class="max-w-[38rem] text-[1.06rem] leading-8 text-stone-100/92 drop-shadow-[0_2px_12px_rgba(0,0,0,0.52)] sm:text-[1.18rem]">
+        <p class="mx-auto max-w-[34rem] text-[1.02rem] leading-8 text-[var(--muted)] dark:text-stone-100/85 sm:text-[1.12rem]">
           {intro}
         </p>
       </div>

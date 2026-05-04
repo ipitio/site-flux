@@ -9,7 +9,6 @@ export const organization = {
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
     { href: "/join", label: "Join" },
-    { href: "/contact", label: "Contact" },
   ],
   hero: {
     eyebrow: "Fireborne Leaders United for eXcellence",
@@ -20,7 +19,7 @@ export const organization = {
   },
   stats: [
     { label: "Mentorship model", value: "1:1" },
-    { label: "Perspective", value: "Global" },
+    { label: "Perspective", value: "World Wide" },
     { label: "Focus", value: "Azeri youth" },
   ],
   highlights: [
