@@ -6,75 +6,27 @@ export default {
 	darkMode: 'selector',
 	theme: {
 		extend: {
-			'animation': {
-				'gradient-x': 'gradient-x 30s linear infinite',
-				'gradient-y': 'gradient-y 30s linear infinite',
-				'gradient-xy': 'gradient-xy 30s linear infinite',
+			boxShadow: {
+				panel: '0 24px 60px -32px rgba(12, 22, 41, 0.48)',
 			},
-			'keyframes': {
-				'gradient-y': {
-					'0%': {
-						'background-size': '400% 400%',
-						'background-position': 'center top'
-					},
-					'33%': {
-						'background-size': '200% 200%',
-						'background-position': 'center center'
-					},
-					'66%': {
-						'background-size': '400% 400%',
-						'background-position': 'center bottom'
-					},
-					'100%': {
-						'background-size': '400% 400%',
-						'background-position': 'center top'
-					}
-				},
-				'gradient-x': {
-					'0%': {
-						'background-size': '200% 200%',
-						'background-position': 'left center'
-					},
-					'25%': {
-						'background-size': '200% 200%',
-						'background-position': 'center center'
+			fontFamily: {
+				body: ['Lato', 'sans-serif'],
+				display: ['Lato', 'sans-serif'],
+				brand: ['Rubik Mono One', 'sans-serif'],
+			},
+			keyframes: {
+				drift: {
+					'0%, 100%': {
+						transform: 'translate3d(0, 0, 0)',
 					},
 					'50%': {
-						'background-size': '200% 200%',
-						'background-position': 'right center'
+						transform: 'translate3d(0, -10px, 0)',
 					},
-					'75%': {
-						'background-size': '200% 200%',
-						'background-position': 'center center'
-					},
-					'100%': {
-						'background-size': '200% 200%',
-						'background-position': 'left center'
-					}
 				},
-				'gradient-xy': {
-					'0%': {
-						'background-size': '400% 400%',
-						'background-position': 'left top'
-					},
-					'25%': {
-						'background-size': '300% 300%',
-						'background-position': 'right top'
-					},
-					'50%': {
-						'background-size': '200% 200%',
-						'background-position': 'right bottom'
-					},
-					'75%': {
-						'background-size': '300% 300%',
-						'background-position': 'left bottom'
-					},
-					'100%': {
-						'background-size': '400% 400%',
-						'background-position': 'left top'
-					}
-				}
-			}
+			},
+			animation: {
+				drift: 'drift 8s ease-in-out infinite',
+			},
 		}
 	},
 	plugins: [

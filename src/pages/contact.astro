@@ -1,0 +1,39 @@
+---
+import ContactForm from "../components/ContactForm.svelte";
+import SectionHeader from "../components/SectionHeader.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { organization } from "../lib/site";
+
+const { contact } = organization;
+---
+
+<SiteLayout title="Contact" description={contact.intro}>
+  <section class="grid gap-6 xl:grid-cols-[0.9fr_1.1fr] xl:items-start">
+    <div class="space-y-6">
+      <div class="section-fade border-t border-[var(--line)] pt-8 lg:pt-10">
+        <SectionHeader align="left" eyebrow="Contact FLUX" title={contact.title} intro={contact.intro} />
+      </div>
+
+      <div class="grid gap-6 md:grid-cols-2">
+        {contact.prompts.map((prompt, index) => (
+          <article class="section-fade border-t border-[var(--line)] pt-5" style={`animation-delay: ${index * 80}ms;`}>
+            <h2 class="text-[1.45rem] font-semibold leading-tight text-balance text-[var(--ink)]">
+              {prompt.title}
+            </h2>
+            <p class="mt-3 text-[0.98rem] leading-7 text-[var(--muted)]">
+              {prompt.detail}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+
+    <ContactForm
+      client:load
+      publicKey={contact.publicKey}
+      serviceId={contact.serviceId}
+      templateId={contact.templateId}
+      messagePlaceholder="Tell FLUX what you need help with or how you want to contribute..."
+    />
+  </section>
+</SiteLayout>

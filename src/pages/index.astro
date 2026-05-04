@@ -1,0 +1,110 @@
+---
+import ActionCard from "../components/ActionCard.astro";
+import PageHero from "../components/PageHero.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import StatGrid from "../components/StatGrid.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { organization } from "../lib/site";
+
+const { hero, highlights, stats } = organization;
+---
+
+<SiteLayout>
+  <PageHero eyebrow={hero.eyebrow} gradientTitle image={hero.image} intro={hero.intro} title={hero.title} tone="amber" />
+
+  <section class="grid gap-8 border-t border-[var(--line)] pt-8 lg:pt-10 xl:grid-cols-[1.05fr_0.95fr]">
+    <div class="section-fade">
+      <SectionHeader
+        align="left"
+        eyebrow="Who FLUX Serves"
+        title="Mentorship built around real application pressure"
+        intro="Students often do not need generic inspiration. They need credible context, clearer options, and access to people who have already crossed the same threshold."
+      />
+
+      <div class="prose-ben mt-8">
+        <p>
+          Fireborne Leaders United for eXcellence is a mentorship initiative dedicated to guiding Azerbaijani youth toward academic and professional success.
+        </p>
+        <p>
+          FLUX connects students with mentors who understand the realities of studying abroad, from early application choices to cultural adaptation and longer-term career direction. The point is practical guidance, not abstraction.
+        </p>
+        <p>
+          Through mentorship, workshops, webinars, and a supportive network, FLUX helps students move with more clarity while keeping a strong sense of connection to Azerbaijan and to one another.
+        </p>
+      </div>
+    </div>
+
+    <div class="section-fade xl:border-l xl:border-[var(--line)] xl:pl-8" style="animation-delay: 80ms;">
+      <p class="eyebrow">At A Glance</p>
+      <h2 class="mt-3 font-display text-[clamp(2rem,4vw,3.4rem)] uppercase tracking-[0.06em] leading-[0.92] text-balance">
+        Built for momentum
+      </h2>
+      <p class="mt-4 max-w-[32rem] text-[1rem] leading-8 text-[var(--muted)] sm:text-[1.08rem]">
+        The network is designed to make decision-making less opaque and to keep knowledge circulating across cohorts instead of getting lost after each successful application.
+      </p>
+
+      <div class="mt-8">
+        <StatGrid items={stats} />
+      </div>
+    </div>
+  </section>
+
+  <section class="space-y-8">
+    <SectionHeader
+      eyebrow="How FLUX Works"
+      title="A sharper path from ambition to action"
+      intro="Students move faster when guidance is specific, expectations are honest, and each next step is clear."
+    />
+
+    <div class="card-cluster card-cluster--three">
+      {highlights.map((highlight) => (
+        <ActionCard
+          description={highlight.description}
+          href={highlight.href}
+          icon={highlight.icon}
+          label={highlight.label}
+          title={highlight.title}
+          tone={highlight.tone}
+        />
+      ))}
+    </div>
+  </section>
+
+  <section class="section-fade border-t border-[var(--line)] pt-8 lg:pt-10">
+    <div class="grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
+      <div>
+        <p class="eyebrow">Why It Matters</p>
+        <h2 class="mt-3 font-display text-[clamp(2rem,4vw,3.4rem)] uppercase tracking-[0.06em] leading-[0.92] text-balance">
+          Representation becomes durable when knowledge is shared deliberately.
+        </h2>
+        <div class="prose-ben mt-6">
+          <p>
+            FLUX is not only about getting a student through one application cycle. It is about making sure the next student starts from a better place than the last one did.
+          </p>
+          <p>
+            That means pairing ambition with honest mentorship, making room for cross-field support, and treating education abroad as part of a longer civic and professional arc.
+          </p>
+        </div>
+      </div>
+
+      <div class="card-cluster card-cluster--two">
+        <ActionCard
+          description="See the longer mission, vision, and story behind FLUX and why the network was formed in the first place."
+          href="/about"
+          icon="ic:round-people-alt"
+          label="Read about FLUX"
+          title="Understand the mission"
+          tone="rose"
+        />
+        <ActionCard
+          description="Mentor, request guidance, or help strengthen the network through workshops and collaboration."
+          href="/join"
+          icon="ic:round-group-add"
+          label="Find your role"
+          title="Join the network"
+          tone="emerald"
+        />
+      </div>
+    </div>
+  </section>
+</SiteLayout>

@@ -1,0 +1,88 @@
+---
+import { Icon } from "astro-icon/components";
+
+export interface Props {
+  description: string;
+  eyebrow?: string;
+  external?: boolean;
+  href: string;
+  icon?: string;
+  label: string;
+  title: string;
+  tone?: "amber" | "emerald" | "rose" | "sky";
+}
+
+const {
+  description,
+  eyebrow = "Next Step",
+  external,
+  href,
+  icon = "ic:round-arrow-forward",
+  label,
+  title,
+  tone = "amber",
+}: Props = Astro.props;
+
+const toneStyles = {
+  amber: {
+    badge: "text-amber-700 dark:text-amber-300",
+    border: "border-amber-500/25",
+    icon: "from-amber-500/18 to-amber-500/8 text-amber-800 dark:text-amber-200",
+    link: "text-amber-700 dark:text-amber-300",
+    glow: "from-amber-500/18 via-amber-500/6 to-transparent",
+  },
+  emerald: {
+    badge: "text-emerald-700 dark:text-emerald-300",
+    border: "border-emerald-500/25",
+    icon: "from-emerald-500/18 to-emerald-500/8 text-emerald-800 dark:text-emerald-200",
+    link: "text-emerald-700 dark:text-emerald-300",
+    glow: "from-emerald-500/18 via-emerald-500/6 to-transparent",
+  },
+  rose: {
+    badge: "text-rose-700 dark:text-rose-300",
+    border: "border-rose-500/25",
+    icon: "from-rose-500/18 to-rose-500/8 text-rose-800 dark:text-rose-200",
+    link: "text-rose-700 dark:text-rose-300",
+    glow: "from-rose-500/18 via-rose-500/6 to-transparent",
+  },
+  sky: {
+    badge: "text-sky-700 dark:text-sky-300",
+    border: "border-sky-500/25",
+    icon: "from-sky-500/18 to-sky-500/8 text-sky-800 dark:text-sky-200",
+    link: "text-sky-700 dark:text-sky-300",
+    glow: "from-sky-500/18 via-sky-500/6 to-transparent",
+  },
+} as const;
+
+const styles = toneStyles[tone];
+const isExternal = external ?? href.startsWith("http");
+---
+
+<a
+  class={`section-shell card-lift section-fade group flex p-6 ${styles.border}`}
+  href={href}
+  rel={isExternal ? "noreferrer" : undefined}
+  target={isExternal ? "_blank" : undefined}
+>
+  <div class={`pointer-events-none absolute inset-x-0 top-0 h-24 bg-gradient-to-b ${styles.glow}`}></div>
+  <div class="relative flex h-full w-full flex-col gap-5">
+    <div class={`inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-gradient-to-br text-2xl ring-1 ring-black/5 dark:ring-white/10 ${styles.icon}`}>
+      <Icon name={icon} />
+    </div>
+
+    <div class="space-y-3">
+      <p class={`text-[0.7rem] font-bold uppercase tracking-[0.24em] ${styles.badge}`}>
+        {eyebrow}
+      </p>
+      <h3 class="text-[1.7rem] font-semibold leading-[1.02] text-balance">{title}</h3>
+      <p class="max-w-[28rem] text-[0.98rem] leading-7 text-[var(--muted)]">{description}</p>
+    </div>
+
+    <span class={`mt-auto inline-flex items-center gap-2 text-sm font-semibold transition ${styles.link}`}>
+      {label}
+      <span class="transition duration-300 group-hover:translate-x-1">
+        <Icon name="ic:round-arrow-forward" />
+      </span>
+    </span>
+  </div>
+</a>

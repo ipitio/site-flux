@@ -1,0 +1,36 @@
+---
+export interface Props {
+  align?: "center" | "left";
+  eyebrow?: string;
+  intro?: string;
+  title: string;
+}
+
+const {
+  align = "center",
+  eyebrow,
+  intro,
+  title,
+}: Props = Astro.props;
+
+const wrapperClass =
+  align === "center" ? "mx-auto max-w-[42rem] text-center" : "max-w-[40rem]";
+const introClass =
+  align === "center"
+    ? "mx-auto max-w-[32rem] text-[1rem] leading-8 text-[var(--muted)] sm:text-[1.08rem]"
+    : "max-w-[32rem] text-[1rem] leading-8 text-[var(--muted)] sm:text-[1.08rem]";
+---
+
+<div class={`section-fade space-y-3 ${wrapperClass}`}>
+  {eyebrow && <p class="eyebrow mb-0">{eyebrow}</p>}
+  <h2 class="font-display text-[clamp(2.2rem,5vw,4.2rem)] uppercase tracking-[0.06em] leading-[0.9] text-balance">
+    {title}
+  </h2>
+  {
+    intro && (
+      <p class={introClass}>
+        {intro}
+      </p>
+    )
+  }
+</div>

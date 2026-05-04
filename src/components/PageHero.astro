@@ -1,0 +1,57 @@
+---
+export interface Props {
+  gradientTitle?: boolean;
+  eyebrow: string;
+  image: string;
+  intro: string;
+  title: string;
+  tone?: "amber" | "emerald" | "rose" | "sky";
+}
+
+const {
+  gradientTitle = false,
+  eyebrow,
+  image,
+  intro,
+  title,
+  tone = "amber",
+}: Props = Astro.props;
+
+const overlays = {
+  amber: "from-stone-950/88 via-stone-950/64 to-amber-900/62",
+  emerald: "from-slate-950/82 via-slate-950/58 to-emerald-900/55",
+  rose: "from-slate-950/82 via-slate-950/58 to-rose-900/55",
+  sky: "from-slate-950/82 via-slate-950/58 to-sky-900/55",
+} as const;
+
+const eyebrowStyles = {
+  amber: "text-amber-100",
+  emerald: "text-emerald-100",
+  rose: "text-rose-100",
+  sky: "text-sky-100",
+} as const;
+---
+
+<section class="relative overflow-hidden rounded-[2.75rem] bg-slate-950">
+  <div class="absolute inset-0">
+    <img alt="" class="hero-image-motion h-full w-full object-cover object-center" loading="eager" src={image} />
+    <div class={`absolute inset-0 bg-gradient-to-br ${overlays[tone]}`}></div>
+    <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-white/10 to-transparent mix-blend-screen"></div>
+  </div>
+
+  <div class="section-fade relative max-w-[46rem] px-6 py-14 text-white sm:px-10 lg:px-14 lg:py-[4.75rem]">
+    <div class="hero-copy-shell relative overflow-hidden rounded-[2rem] border border-white/12 p-6 sm:p-8 lg:p-10">
+      <div class="pointer-events-none absolute inset-y-0 right-0 w-36 bg-gradient-to-l from-white/10 to-transparent opacity-70"></div>
+
+      <div class="relative space-y-5">
+        <p class={`text-sm font-bold uppercase tracking-[0.28em] ${eyebrowStyles[tone]}`}>{eyebrow}</p>
+        <h1 class={`font-brand text-[clamp(3.35rem,7vw,5.8rem)] uppercase tracking-[0.08em] leading-[0.9] text-balance ${gradientTitle ? "hero-brand-gradient drop-shadow-[0_10px_24px_rgba(0,0,0,0.55)]" : "text-white"}`}>
+          {title}
+        </h1>
+        <p class="max-w-[38rem] text-[1.06rem] leading-8 text-stone-100/92 drop-shadow-[0_2px_12px_rgba(0,0,0,0.52)] sm:text-[1.18rem]">
+          {intro}
+        </p>
+      </div>
+    </div>
+  </div>
+</section>

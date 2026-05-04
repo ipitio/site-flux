@@ -1,0 +1,61 @@
+---
+import ActionCard from "../components/ActionCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { organization } from "../lib/site";
+
+const { about } = organization;
+---
+
+<SiteLayout title="About" description={about.mission}>
+  <section class="section-fade border-t border-[var(--line)] pt-8 lg:pt-10">
+    <p class="eyebrow">About FLUX</p>
+    <h1 class="mt-3 font-display text-[clamp(2.8rem,6vw,5rem)] uppercase tracking-[0.06em] leading-[0.9] text-balance">
+      A mentorship network built on memory, reciprocity, and national contribution.
+    </h1>
+    <p class="mt-5 max-w-[44rem] text-[1.02rem] leading-8 text-[var(--muted)] sm:text-[1.12rem]">
+      FLUX was built to make hard-won experience more available to Azerbaijani students who are trying to move toward serious academic and professional opportunities.
+    </p>
+  </section>
+
+  <section class="grid gap-8 lg:grid-cols-2">
+    <article class="section-fade border-t border-[var(--line)] pt-6">
+      <SectionHeader align="left" eyebrow="Mission" title="Guide with context" intro={about.mission} />
+    </article>
+    <article class="section-fade border-t border-[var(--line)] pt-6" style="animation-delay: 80ms;">
+      <SectionHeader align="left" eyebrow="Vision" title="Grow a stronger network" intro={about.vision} />
+    </article>
+  </section>
+
+  <section class="section-fade border-t border-[var(--line)] pt-8 lg:pt-10">
+    <SectionHeader
+      align="left"
+      eyebrow="Story"
+      title="Why FLUX started"
+      intro="The network started from a practical gap: students often had ambition, but not enough grounded guidance from people who had recently taken the same path."
+    />
+
+    <div class="prose-ben mt-8 space-y-6">
+      {about.story.map((paragraph) => <p>{paragraph}</p>)}
+    </div>
+  </section>
+
+  <section class="card-cluster card-cluster--two">
+    <ActionCard
+      description="If you can share experience, perspective, or time, FLUX is always open to people who want to help the next cohort move faster."
+      href="/join"
+      icon="ic:round-group-add"
+      label="See how to join"
+      title="Take part in the network"
+      tone="emerald"
+    />
+    <ActionCard
+      description="If you want guidance or have a question about working with FLUX, the fastest path is to start the conversation directly."
+      href="/contact"
+      icon="ic:round-chat-bubble"
+      label="Contact FLUX"
+      title="Reach out directly"
+      tone="rose"
+    />
+  </section>
+</SiteLayout>

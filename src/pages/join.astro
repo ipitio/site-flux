@@ -1,0 +1,51 @@
+---
+import ActionCard from "../components/ActionCard.astro";
+import SectionHeader from "../components/SectionHeader.astro";
+import SiteLayout from "../layouts/SiteLayout.astro";
+import { organization } from "../lib/site";
+
+const { join } = organization;
+---
+
+<SiteLayout title="Join" description={join.intro}>
+  <section class="section-fade border-t border-[var(--line)] pt-8 lg:pt-10">
+    <p class="eyebrow">Join FLUX</p>
+    <h1 class="mt-3 font-display text-[clamp(2.8rem,6vw,5rem)] uppercase tracking-[0.06em] leading-[0.9] text-balance">
+      A stronger network depends on people who are willing to pass experience forward.
+    </h1>
+    <p class="mt-5 max-w-[44rem] text-[1.02rem] leading-8 text-[var(--muted)] sm:text-[1.12rem]">
+      {join.intro}
+    </p>
+  </section>
+
+  <section class="grid gap-6 xl:grid-cols-3">
+    <article class="section-fade border-t border-[var(--line)] pt-6">
+      <SectionHeader align="left" eyebrow="Mentors" title={join.mentorTitle} intro={join.mentorBody} />
+    </article>
+    <article class="section-fade border-t border-[var(--line)] pt-6" style="animation-delay: 80ms;">
+      <SectionHeader align="left" eyebrow="Mentees" title={join.menteeTitle} intro={join.menteeBody} />
+    </article>
+    <article class="section-fade border-t border-[var(--line)] pt-6" style="animation-delay: 160ms;">
+      <SectionHeader align="left" eyebrow="Collaborators" title={join.communityTitle} intro={join.communityBody} />
+    </article>
+  </section>
+
+  <section class="card-cluster card-cluster--two">
+    <ActionCard
+      description="Use the contact form to introduce yourself, describe how you would like to contribute, and share the kind of support or involvement you are looking for."
+      href={join.primaryCta.href}
+      icon="ic:round-chat-bubble"
+      label={join.primaryCta.label}
+      title="Start with a direct message"
+      tone="rose"
+    />
+    <ActionCard
+      description="If you want more context before reaching out, revisit the mission and the longer rationale behind the network."
+      href={join.secondaryCta.href}
+      icon="ic:round-people-alt"
+      label={join.secondaryCta.label}
+      title="Read the background"
+      tone="amber"
+    />
+  </section>
+</SiteLayout>

@@ -1,0 +1,77 @@
+---
+import "@fontsource/lato";
+import "@fontsource/rubik-mono-one";
+import { ClientRouter } from "astro:transitions";
+import SiteFooter from "../components/SiteFooter.astro";
+import SiteHeader from "../components/SiteHeader.svelte";
+import { organization } from "../lib/site";
+import "../styles/global.css";
+
+export interface Props {
+  description?: string;
+  mainClass?: string;
+  title?: string;
+}
+
+const {
+  description = organization.description,
+  mainClass = "",
+  title = "Home",
+}: Props = Astro.props;
+
+const siteUrl = Astro.site ?? new URL(Astro.url.origin);
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const socialImage = new URL("/logo.webp", siteUrl).href;
+const faviconImage = new URL("/logo.ico", siteUrl).href;
+const pageTitle =
+  title === "Home"
+    ? `${organization.shortName} | ${organization.tagline}`
+    : `${title} | ${organization.shortName}`;
+---
+
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <ClientRouter />
+    <meta content={Astro.generator} name="generator" />
+    <meta content={description} name="description" />
+    <meta content="#f6eedb" name="theme-color" />
+    <link href={faviconImage} rel="icon" type="image/x-icon" />
+    <link href={canonical} rel="canonical" />
+    <link href="/sitemap-index.xml" rel="sitemap" />
+    <link as="image" href="/arch.webp" rel="preload" />
+    <title>{pageTitle}</title>
+
+    <meta content={pageTitle} property="og:title" />
+    <meta content={description} property="og:description" />
+    <meta content={canonical} property="og:url" />
+    <meta content={organization.name} property="og:site_name" />
+    <meta content="website" property="og:type" />
+    <meta content={socialImage} property="og:image" />
+    <meta content="summary_large_image" name="twitter:card" />
+
+    <script is:inline>
+      const storedTheme = localStorage.getItem("theme");
+      const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const theme = storedTheme ?? (systemDark ? "dark" : "light");
+      document.documentElement.classList.toggle("dark", theme === "dark");
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute("content", theme === "dark" ? "#151008" : "#f6eedb");
+    </script>
+  </head>
+
+  <body class="min-h-screen bg-[var(--surface-base)] text-[var(--ink)] antialiased selection:bg-amber-200 selection:text-stone-950 dark:selection:bg-amber-500/30 dark:selection:text-stone-50">
+    <div class="page-gradient pointer-events-none fixed inset-0 -z-10 opacity-90"></div>
+    <div class="page-grid pointer-events-none fixed inset-0 -z-10"></div>
+
+    <SiteHeader client:load ctaHref="/contact" ctaLabel="Get Involved" currentPath={Astro.url.pathname} items={organization.navigation} label={organization.sublabel} shortName={organization.shortName} />
+
+    <main class={`mx-auto flex min-h-[calc(100vh-10rem)] w-full max-w-7xl flex-col gap-16 px-4 pb-16 pt-28 sm:px-6 lg:px-8 ${mainClass}`}>
+      <slot />
+    </main>
+
+    <SiteFooter creditHref={organization.footer.creditHref} creditLabel={organization.footer.creditLabel} creditText={organization.footer.creditText} organization={organization.name} shortName={organization.shortName} tagline={organization.tagline} />
+  </body>
+</html>

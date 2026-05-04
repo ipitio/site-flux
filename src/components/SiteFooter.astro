@@ -1,0 +1,45 @@
+---
+export interface Props {
+  creditHref: string;
+  creditLabel: string;
+  creditText: string;
+  organization: string;
+  shortName: string;
+  tagline: string;
+  year?: number;
+}
+
+const {
+  creditHref,
+  creditLabel,
+  creditText,
+  organization,
+  shortName,
+  tagline,
+  year = new Date().getFullYear(),
+}: Props = Astro.props;
+---
+
+<footer class="mx-auto mb-8 w-full max-w-7xl px-4 sm:px-6 lg:px-8">
+  <div class="border-t border-[var(--line)] px-2 py-6 text-sm text-[var(--muted)] sm:px-0">
+    <div class="flex flex-col gap-3 md:flex-row md:items-center md:justify-between">
+      <div class="space-y-1">
+        <p class="eyebrow mb-0">Fireborne Leaders United for eXcellence</p>
+        <p class="font-brand text-2xl uppercase tracking-[0.18em] text-[var(--ink)]">
+          {shortName}
+        </p>
+        <p>{tagline}</p>
+      </div>
+
+      <div class="text-left md:text-right">
+        <p>© {year} {organization}. All rights reserved.</p>
+        <p>
+          {creditLabel}{" "}
+          <a class="font-semibold text-amber-700 hover:text-amber-600 dark:text-amber-300 dark:hover:text-amber-200" href={creditHref} rel="noreferrer" target="_blank">
+            {creditText}.
+          </a>
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>
