@@ -173,7 +173,7 @@ function isActive(href: string) {
   .site-header__frame {
     width: 100%;
     margin-top: 0;
-    border: 0;
+    border: 1px solid transparent;
     border-radius: 0;
     background: var(--surface-base);
     box-shadow: none;
@@ -202,7 +202,7 @@ function isActive(href: string) {
   .site-header:not(.is-at-top) .site-header__frame {
     width: calc(min(100% - 0.5rem, 84rem));
     margin-top: 1rem;
-    border: 1px solid var(--line);
+    border-color: rgba(217, 119, 6, 0.28);
     border-radius: 28px;
     background: rgb(var(--surface-card) / 0.84);
     box-shadow: 0 20px 60px rgba(20, 14, 8, 0.18);
@@ -211,7 +211,7 @@ function isActive(href: string) {
   }
 
   .site-header.is-at-top.is-menu-open .site-header__frame {
-    border-bottom: 1px solid var(--line);
+    border-color: transparent;
     background: rgb(var(--surface-card) / 0.84);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
