@@ -173,7 +173,7 @@ function isActive(href: string) {
   .site-header__frame {
     width: 100%;
     margin-top: 0;
-    border: 1px solid transparent;
+    border: 0;
     border-radius: 0;
     background: var(--surface-base);
     box-shadow: none;
@@ -187,8 +187,7 @@ function isActive(href: string) {
       box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1),
       padding 500ms cubic-bezier(0.22, 1, 0.36, 1),
       background-color 500ms cubic-bezier(0.22, 1, 0.36, 1),
-      backdrop-filter 500ms cubic-bezier(0.22, 1, 0.36, 1),
-      border-color 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        backdrop-filter 500ms cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   .site-header.is-compact .site-header__frame {
@@ -202,16 +201,16 @@ function isActive(href: string) {
   .site-header:not(.is-at-top) .site-header__frame {
     width: calc(min(100% - 0.5rem, 84rem));
     margin-top: 1rem;
-    border-color: rgba(217, 119, 6, 0.28);
     border-radius: 28px;
     background: rgb(var(--surface-card) / 0.84);
-    box-shadow: 0 20px 60px rgba(20, 14, 8, 0.18);
+    box-shadow:
+      inset 0 0 0 1px rgba(217, 119, 6, 0.28),
+      0 20px 60px rgba(20, 14, 8, 0.18);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
   }
 
   .site-header.is-at-top.is-menu-open .site-header__frame {
-    border-color: transparent;
     background: rgb(var(--surface-card) / 0.84);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
