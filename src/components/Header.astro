@@ -223,6 +223,38 @@ function isActive(href: string) {
     box-shadow: 0 18px 40px rgba(120, 53, 15, 0.22);
   }
 
+  .site-header__menu {
+    display: block;
+    max-height: 0;
+    opacity: 0;
+    transform: translateY(-0.5rem);
+    visibility: hidden;
+    pointer-events: none;
+    will-change: max-height, opacity, transform;
+    transition:
+      max-height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 220ms ease,
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 320ms;
+  }
+
+  .site-header.is-menu-open .site-header__menu {
+    max-height: 32rem;
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+    pointer-events: auto;
+    transition:
+      max-height 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      opacity 220ms ease,
+      transform 320ms cubic-bezier(0.22, 1, 0.36, 1),
+      visibility 0s linear 0s;
+  }
+
+  .site-header.is-menu-closing .site-header__menu {
+    visibility: visible;
+  }
+
   @media (min-width: 640px) {
     .site-header__frame {
       padding-inline: 1.5rem;
