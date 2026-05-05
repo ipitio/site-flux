@@ -1,0 +1,245 @@
+---
+export interface Props {
+  ctaHref?: string;
+  ctaLabel?: string;
+  currentPath: string;
+  items: ReadonlyArray<{
+    href: string;
+    label: string;
+  }>;
+  label: string;
+  shortName: string;
+}
+
+const {
+  ctaHref,
+  ctaLabel = "Contact",
+  currentPath,
+  items,
+  label,
+  shortName,
+}: Props = Astro.props;
+
+function normalizeHref(href: string) {
+  const [path] = href.split("#");
+
+  if (!path || path === "/") {
+    return "/";
+  }
+
+  return path.endsWith("/") ? path.slice(0, -1) : path;
+}
+
+const normalizedPath =
+  !currentPath || currentPath === "/"
+    ? "/"
+    : currentPath.endsWith("/")
+      ? currentPath.slice(0, -1)
+      : currentPath;
+
+function isActive(href: string) {
+  if (href.includes("#")) {
+    return false;
+  }
+
+  return normalizedPath === normalizeHref(href);
+}
+---
+
+<header class="site-header is-at-top" data-site-header transition:persist>
+  <div class="site-header__frame" data-site-header-frame>
+    <div class="flex h-11 items-center justify-between gap-4 md:grid md:h-auto md:min-h-[3.2rem] md:grid-cols-[auto_1fr_auto] md:items-center">
+      <a class="flex h-11 min-w-0 items-center gap-3" href="/">
+        <img alt={`${shortName} logo`} class="h-10 w-10 rounded-full border border-black/10 object-cover shadow-sm dark:border-white/10 sm:h-11 sm:w-11" decoding="async" height="44" src="/logo-256.webp" width="44" />
+        <div class="hidden min-w-0 flex-col justify-center self-center leading-[1.05] sm:flex">
+          <p class="font-brand truncate text-[1.5rem] uppercase tracking-[0.18em] leading-none text-[var(--ink)]">
+            {shortName}
+          </p>
+          <p class="truncate text-[0.68rem] font-semibold uppercase tracking-[0.24em] leading-none text-[var(--muted)]">
+            {label}
+          </p>
+        </div>
+        <span class="font-brand self-center text-[1.5rem] uppercase tracking-[0.18em] leading-none text-[var(--ink)] sm:hidden">
+          {shortName}
+        </span>
+      </a>
+
+      <nav class="hidden items-center justify-center gap-1 md:flex md:justify-self-center">
+        {items.map((item) => (
+          <a
+            aria-current={isActive(item.href) ? "page" : undefined}
+            class="site-header__link rounded-full px-4 py-2 text-sm font-semibold text-[var(--muted)] hover:bg-black/5 hover:text-amber-700 dark:hover:bg-white/5 dark:hover:text-amber-200"
+            data-active={isActive(item.href) ? "true" : undefined}
+            data-nav-link
+            href={item.href}
+          >
+            {item.label}
+          </a>
+        ))}
+      </nav>
+
+      <div class="flex h-11 shrink-0 items-center gap-2 md:justify-self-end">
+        {
+          ctaHref && (
+            <a
+              class="hidden h-11 items-center justify-center rounded-full bg-amber-600 px-4 py-2 text-sm font-semibold leading-none text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-500 md:inline-flex"
+              href={ctaHref}
+            >
+              {ctaLabel}
+            </a>
+          )
+        }
+
+        <button aria-label="Toggle theme" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-white/60 leading-none text-[var(--ink)] transition-transform duration-200 hover:-translate-y-0.5 dark:bg-black/20" data-theme-toggle type="button">
+          <svg aria-hidden="true" class="hidden h-5 w-5" data-theme-icon="dark" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3c0 4.97 4.03 9 9 9Z"></path>
+          </svg>
+          <svg aria-hidden="true" class="h-5 w-5" data-theme-icon="light" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2"></path>
+            <path d="M12 20v2"></path>
+            <path d="m4.93 4.93 1.41 1.41"></path>
+            <path d="m17.66 17.66 1.41 1.41"></path>
+            <path d="M2 12h2"></path>
+            <path d="M20 12h2"></path>
+            <path d="m6.34 17.66-1.41 1.41"></path>
+            <path d="m19.07 4.93-1.41 1.41"></path>
+          </svg>
+        </button>
+
+        <button aria-expanded="false" aria-label="Toggle navigation menu" class="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[var(--line)] bg-white/60 leading-none text-[var(--ink)] transition-transform duration-200 hover:-translate-y-0.5 dark:bg-black/20 md:hidden" data-menu-toggle type="button">
+          <svg aria-hidden="true" class="h-5 w-5" data-menu-icon="closed" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M4 12h16"></path>
+            <path d="M4 6h16"></path>
+            <path d="M4 18h16"></path>
+          </svg>
+          <svg aria-hidden="true" class="hidden h-5 w-5" data-menu-icon="open" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24">
+            <path d="M18 6 6 18"></path>
+            <path d="m6 6 12 12"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <div class="site-header__menu mt-4 overflow-hidden md:hidden" data-mobile-menu hidden>
+      <nav class="border-t border-[var(--line)] pt-4">
+        <div class="flex flex-col gap-2">
+          {
+            ctaHref && (
+              <a
+                class="mb-2 inline-flex items-center justify-center rounded-2xl bg-amber-600 px-4 py-3 text-sm font-semibold text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-500"
+                href={ctaHref}
+              >
+                {ctaLabel}
+              </a>
+            )
+          }
+
+          {items.map((item) => (
+            <a
+              aria-current={isActive(item.href) ? "page" : undefined}
+              class="site-header__link rounded-2xl px-4 py-3 text-sm font-semibold text-[var(--muted)] hover:bg-black/5 hover:text-amber-700 dark:hover:bg-white/5 dark:hover:text-amber-200"
+              data-active={isActive(item.href) ? "true" : undefined}
+              data-nav-link
+              href={item.href}
+            >
+              {item.label}
+            </a>
+          ))}
+        </div>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<script defer is:inline src="/scripts/site-header.js"></script>
+
+<style>
+  .site-header {
+    position: fixed;
+    inset-inline: 0;
+    top: 0;
+    z-index: 50;
+    display: flex;
+    justify-content: center;
+    will-change: transform;
+    transition: transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .site-header.is-hidden {
+    transform: translateY(calc(-100% - 1rem));
+  }
+
+  .site-header__frame {
+    width: 100%;
+    margin-top: 0;
+    border: 0;
+    border-radius: 0;
+    background: var(--surface-base);
+    box-shadow: none;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+    padding: 1rem 1rem;
+    transition:
+      width 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      margin 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-radius 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      box-shadow 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      padding 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      background-color 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      backdrop-filter 500ms cubic-bezier(0.22, 1, 0.36, 1),
+      border-color 500ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  .site-header.is-compact .site-header__frame {
+    padding-block: 0.75rem;
+  }
+
+  .site-header:not(.is-compact) .site-header__frame {
+    padding-block: 1rem;
+  }
+
+  .site-header:not(.is-at-top) .site-header__frame {
+    width: calc(min(100% - 0.5rem, 84rem));
+    margin-top: 1rem;
+    border: 1px solid var(--line);
+    border-radius: 28px;
+    background: rgb(var(--surface-card) / 0.84);
+    box-shadow: 0 20px 60px rgba(20, 14, 8, 0.18);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .site-header.is-at-top.is-menu-open .site-header__frame {
+    border-bottom: 1px solid var(--line);
+    background: rgb(var(--surface-card) / 0.84);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+
+  .site-header__link[data-active="true"] {
+    background: rgb(217 119 6);
+    color: rgb(255 255 255);
+    box-shadow: 0 18px 40px rgba(120, 53, 15, 0.22);
+  }
+
+  @media (min-width: 640px) {
+    .site-header__frame {
+      padding-inline: 1.5rem;
+    }
+
+    .site-header:not(.is-at-top) .site-header__frame {
+      width: calc(min(100% - 1rem, 84rem));
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .site-header__frame {
+      padding-inline: 2rem;
+    }
+
+    .site-header:not(.is-at-top) .site-header__frame {
+      width: calc(min(100% - 1.5rem, 84rem));
+    }
+  }
+</style>

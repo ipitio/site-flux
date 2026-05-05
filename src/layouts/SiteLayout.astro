@@ -3,7 +3,7 @@ import "@fontsource/lato";
 import "@fontsource/rubik-mono-one";
 import { ClientRouter } from "astro:transitions";
 import SiteFooter from "../components/SiteFooter.astro";
-import SiteHeader from "../components/SiteHeader.svelte";
+import Header from "../components/Header.astro";
 import { organization } from "../lib/site";
 import "../styles/global.css";
 
@@ -22,7 +22,8 @@ const {
 const siteUrl = Astro.site ?? new URL(Astro.url.origin);
 const canonical = new URL(Astro.url.pathname, siteUrl).href;
 const socialImage = new URL("/logo.webp", siteUrl).href;
-const faviconImage = new URL("/logo.ico", siteUrl).href;
+const faviconImage = new URL("/logo-192.png", siteUrl).href;
+const touchIcon = new URL("/logo-512.png", siteUrl).href;
 const pageTitle =
   title === "Home"
     ? `${organization.shortName} | ${organization.tagline}`
@@ -37,10 +38,10 @@ const pageTitle =
     <meta content={Astro.generator} name="generator" />
     <meta content={description} name="description" />
     <meta content="#f6eedb" name="theme-color" />
-    <link href={faviconImage} rel="icon" type="image/x-icon" />
+    <link href={faviconImage} rel="icon" type="image/png" />
+    <link href={touchIcon} rel="apple-touch-icon" />
     <link href={canonical} rel="canonical" />
     <link href="/sitemap-index.xml" rel="sitemap" />
-    <link as="image" href="/arch.webp" rel="preload" />
     <title>{pageTitle}</title>
 
     <meta content={pageTitle} property="og:title" />
@@ -52,16 +53,24 @@ const pageTitle =
     <meta content="summary_large_image" name="twitter:card" />
 
     <script is:inline>
-      window.__applySiteTheme = () => {
-        const storedTheme = localStorage.getItem("theme");
+      window.__setSiteTheme = (requestedTheme) => {
+        const storedTheme = requestedTheme ?? localStorage.getItem("theme");
         const systemDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = storedTheme ?? (systemDark ? "dark" : "light");
+
+        if (requestedTheme) {
+          localStorage.setItem("theme", requestedTheme);
+        }
+
         document.documentElement.classList.toggle("dark", theme === "dark");
         document
           .querySelector('meta[name="theme-color"]')
           ?.setAttribute("content", theme === "dark" ? "#151008" : "#f6eedb");
+
+        return theme;
       };
 
+      window.__applySiteTheme = () => window.__setSiteTheme();
       window.__applySiteTheme();
 
       if (!window.__siteThemeListenersBound) {
@@ -77,7 +86,7 @@ const pageTitle =
     <div class="page-gradient pointer-events-none fixed inset-0 -z-10 opacity-90"></div>
     <div class="page-grid pointer-events-none fixed inset-0 -z-10"></div>
 
-    <SiteHeader client:load transition:persist ctaHref="/contact" ctaLabel="Contact" currentPath={Astro.url.pathname} items={organization.navigation} label={organization.sublabel} shortName={organization.shortName} />
+    <Header ctaHref="/contact" ctaLabel="Contact" currentPath={Astro.url.pathname} items={organization.navigation} label={organization.sublabel} shortName={organization.shortName} />
 
     <main class={`mx-auto flex w-full max-w-7xl flex-1 flex-col gap-16 px-4 pb-16 pt-28 sm:px-6 lg:px-8 ${mainClass}`}>
       <slot />

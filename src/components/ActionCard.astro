@@ -78,9 +78,9 @@ const isExternal = external ?? href.startsWith("http");
       <p class="max-w-[28rem] text-[0.98rem] leading-7 text-[var(--muted)]">{description}</p>
     </div>
 
-    <span class={`mt-auto inline-flex items-center gap-2 text-sm font-semibold transition ${styles.link}`}>
+    <span class={`mt-auto inline-flex items-center gap-2 text-sm font-semibold transition-colors duration-200 ${styles.link}`}>
       {label}
-      <span class="transition duration-300 group-hover:translate-x-1">
+      <span class="transition-transform duration-300 group-hover:translate-x-1">
         <Icon name="ic:round-arrow-forward" />
       </span>
     </span>

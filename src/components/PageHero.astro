@@ -1,4 +1,6 @@
 ---
+import { buildImageVariantSet } from "../lib/image-variants";
+
 export interface Props {
   gradientTitle?: boolean;
   eyebrow: string;
@@ -17,6 +19,9 @@ const {
   tone = "amber",
 }: Props = Astro.props;
 
+const responsiveSources = buildImageVariantSet(image, [640, 960], 1440);
+const srcset = responsiveSources.map((source) => `${source.src} ${source.width}w`).join(", ");
+
 const overlays = {
   amber: "from-stone-950/88 via-stone-950/64 to-amber-900/62 dark:from-stone-950/72 dark:via-stone-950/36 dark:to-amber-900/38",
   emerald: "from-slate-950/82 via-slate-950/58 to-emerald-900/55 dark:from-slate-950/68 dark:via-slate-950/34 dark:to-emerald-900/36",
@@ -34,7 +39,7 @@ const eyebrowStyles = {
 
 <section class="relative overflow-hidden rounded-[2.75rem] bg-slate-950">
   <div class="absolute inset-0">
-    <img alt="" class="hero-image-motion h-full w-full object-cover object-center" loading="eager" src={image} />
+    <img alt="" class="hero-image-motion h-full w-full object-cover object-center" decoding="async" fetchpriority="high" loading="eager" sizes="(max-width: 1023px) 100vw, 1440px" src={image} srcset={srcset} />
     <div class={`absolute inset-0 bg-gradient-to-br ${overlays[tone]}`}></div>
     <div class="absolute inset-y-0 right-0 w-1/2 bg-gradient-to-l from-white/10 to-transparent mix-blend-screen"></div>
   </div>

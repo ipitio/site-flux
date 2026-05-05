@@ -1,8 +1,6 @@
 <svelte:options runes={true} />
 
 <script lang="ts">
-  import emailjs from "@emailjs/browser";
-
   let {
     publicKey,
     serviceId,
@@ -74,6 +72,8 @@
     submitMessage = sendingMessage;
 
     try {
+      const emailjs = await import("@emailjs/browser").then((module) => module.default);
+
       await emailjs.send(
         serviceId,
         templateId,
@@ -109,7 +109,8 @@
       <input
         aria-invalid={nameError ? "true" : "false"}
         bind:value={fromName}
-        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
+        autocomplete="name"
+        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
         id="from_name"
         name="from_name"
         oninput={() => (nameError = "")}
@@ -128,8 +129,10 @@
       <input
         aria-invalid={emailError ? "true" : "false"}
         bind:value={replyTo}
-        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
+        autocomplete="email"
+        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
         id="reply_to"
+        inputmode="email"
         name="reply_to"
         oninput={() => (emailError = "")}
         placeholder="v@lid.email"
@@ -147,7 +150,7 @@
       <textarea
         aria-invalid={messageError ? "true" : "false"}
         bind:value={message}
-        class="min-h-40 w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
+        class="min-h-40 w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
         id="message"
         name="message"
         oninput={() => (messageError = "")}
@@ -164,7 +167,7 @@
       </div>
     {/if}
 
-    <button class="inline-flex w-full items-center justify-center rounded-full bg-amber-600 px-5 py-3 text-base font-semibold text-white transition hover:bg-amber-500 disabled:cursor-not-allowed disabled:bg-amber-800/60" disabled={submitState === "sending"} type="submit">
+    <button class="inline-flex w-full items-center justify-center rounded-full bg-amber-600 px-5 py-3 text-base font-semibold text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-500 disabled:cursor-not-allowed disabled:bg-amber-800/60" disabled={submitState === "sending"} type="submit">
       {submitState === "sending" ? "Sending..." : "Send Message"}
     </button>
   </div>

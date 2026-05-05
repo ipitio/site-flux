@@ -144,7 +144,7 @@ textarea {
 }
 
 .card-lift {
-  transition-property: border-color, box-shadow, background-color, transform;
+  transition-property: box-shadow, transform;
   transition-duration: 420ms;
   transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
 }
