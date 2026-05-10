@@ -48,10 +48,10 @@ function isActive(href: string) {
 
 <header class="site-header is-at-top" data-site-header transition:persist>
   <div class="site-header__frame" data-site-header-frame>
-    <div class="flex h-11 items-center justify-between gap-4 md:grid md:h-auto md:min-h-[3.2rem] md:grid-cols-[auto_1fr_auto] md:items-center">
-      <a class="flex h-11 min-w-0 items-center gap-3" href="/">
+    <div class="flex min-h-[2.8rem] items-center justify-between gap-4 md:grid md:min-h-[3.35rem] md:grid-cols-[auto_1fr_auto] md:items-center">
+      <a class="flex min-h-[2.8rem] min-w-0 items-center gap-3 py-0.5" href="/">
         <img alt={`${shortName} logo`} class="h-10 w-10 rounded-full border border-black/10 object-cover shadow-sm dark:border-white/10 sm:h-11 sm:w-11" decoding="async" height="44" src="/logo-256.webp" width="44" />
-        <div class="hidden min-w-0 flex-col justify-center self-center leading-[1.05] sm:flex">
+        <div class="hidden min-w-0 flex-col justify-center leading-[1.05] sm:flex">
           <p class="font-brand truncate text-[1.5rem] uppercase tracking-[0.18em] leading-none text-[var(--ink)]">
             {shortName}
           </p>
@@ -59,7 +59,7 @@ function isActive(href: string) {
             {label}
           </p>
         </div>
-        <span class="font-brand self-center text-[1.5rem] uppercase tracking-[0.18em] leading-none text-[var(--ink)] sm:hidden">
+        <span class="font-brand text-[1.5rem] uppercase tracking-[0.18em] leading-none text-[var(--ink)] sm:hidden">
           {shortName}
         </span>
       </a>
@@ -78,7 +78,7 @@ function isActive(href: string) {
         ))}
       </nav>
 
-      <div class="flex h-11 shrink-0 items-center gap-2 md:justify-self-end">
+      <div class="flex min-h-[2.8rem] shrink-0 items-center gap-2 md:justify-self-end">
         {
           ctaHref && (
             <a
@@ -171,6 +171,7 @@ function isActive(href: string) {
   }
 
   .site-header__frame {
+    box-sizing: border-box;
     width: 100%;
     margin-top: 0;
     border: 0;
@@ -191,7 +192,7 @@ function isActive(href: string) {
   }
 
   .site-header.is-compact .site-header__frame {
-    padding-block: 0.75rem;
+    padding-block: 0.875rem;
   }
 
   .site-header:not(.is-compact) .site-header__frame {
@@ -223,7 +224,6 @@ function isActive(href: string) {
   }
 
   .site-header__menu {
-    display: block;
     max-height: 0;
     opacity: 0;
     transform: translateY(-0.5rem);

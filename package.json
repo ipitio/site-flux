@@ -16,21 +16,27 @@
   },
   "dependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/node": "^10.0.6",
+    "@astrojs/node": "^10.1.0",
     "@astrojs/sitemap": "^3.7.2",
     "@astrojs/svelte": "^8.1.0",
     "@astrojs/tailwind": "^6.0.2",
     "@emailjs/browser": "4.4.1",
     "@fontsource/lato": "^5.2.7",
     "@fontsource/rubik-mono-one": "^5.2.8",
-    "astro": "^6.2.1",
+    "astro": "^6.3.1",
     "astro-icon": "^1.1.5",
     "svelte": "^5.55.5",
-    "tailwindcss": "^3.4.14",
-    "typescript": "^5.9.3"
+    "tailwindcss": "^3.4.19",
+    "typescript": "^6.0.3"
   },
   "devDependencies": {
     "@iconify-json/ic": "^1.2.4",
     "@tailwindcss/typography": "^0.5.19"
+  },
+  "overrides": {
+    "fast-uri": "3.1.2",
+    "volar-service-yaml": "0.0.71",
+    "yaml": "2.8.4",
+    "yaml-language-server": "1.23.0"
   }
 }
