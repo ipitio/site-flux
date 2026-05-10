@@ -1,9 +1,5 @@
-import typography from '@tailwindcss/typography';
-
 /** @type {import('tailwindcss').Config} */
 export default {
-	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
-	darkMode: 'selector',
 	theme: {
 		extend: {
 			boxShadow: {
@@ -27,9 +23,6 @@ export default {
 			animation: {
 				drift: 'drift 8s ease-in-out infinite',
 			},
-		}
+		},
 	},
-	plugins: [
-		typography,
-	],
 }

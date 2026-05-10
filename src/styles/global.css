@@ -1,6 +1,7 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../../tailwind.config.mjs";
+@plugin "@tailwindcss/typography";
+@custom-variant dark (&:where(.dark, .dark *));
 
 :root {
   --surface-base: #f6eedb;
@@ -125,7 +126,7 @@ textarea {
 }
 
 .section-shell {
-  @apply relative overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[rgb(var(--surface-card)/0.82)] shadow-panel backdrop-blur-sm;
+  @apply relative overflow-hidden rounded-[2rem] border border-[var(--line)] bg-[rgb(var(--surface-card)/0.82)] shadow-panel backdrop-blur-xs;
 }
 
 .section-shell::before {

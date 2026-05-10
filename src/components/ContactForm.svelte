@@ -100,7 +100,7 @@
   }
 </script>
 
-<form class="rounded-[2rem] border border-[var(--line)] bg-[rgb(var(--surface-card)/0.82)] p-6 shadow-panel backdrop-blur-sm sm:p-8" onsubmit={handleSubmit}>
+<form class="rounded-[2rem] border border-[var(--line)] bg-[rgb(var(--surface-card)/0.82)] p-6 shadow-panel backdrop-blur-xs sm:p-8" onsubmit={handleSubmit}>
   <div class="space-y-6">
     <div>
       <label class="mb-2 block text-sm font-semibold uppercase tracking-[0.28em] text-[var(--muted)]" for="from_name">
@@ -110,7 +110,7 @@
         aria-invalid={nameError ? "true" : "false"}
         bind:value={fromName}
         autocomplete="name"
-        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
+        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-hidden transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
         id="from_name"
         name="from_name"
         oninput={() => (nameError = "")}
@@ -130,7 +130,7 @@
         aria-invalid={emailError ? "true" : "false"}
         bind:value={replyTo}
         autocomplete="email"
-        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
+        class="w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-hidden transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
         id="reply_to"
         inputmode="email"
         name="reply_to"
@@ -150,7 +150,7 @@
       <textarea
         aria-invalid={messageError ? "true" : "false"}
         bind:value={message}
-        class="min-h-40 w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-none transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
+        class="min-h-40 w-full rounded-2xl border border-[var(--line)] bg-white/70 px-4 py-3 text-base text-slate-900 outline-hidden transition-shadow duration-200 focus:border-amber-500 focus:ring-4 focus:ring-amber-500/15 dark:bg-black/20 dark:text-slate-50"
         id="message"
         name="message"
         oninput={() => (messageError = "")}

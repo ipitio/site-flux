@@ -1,6 +1,6 @@
 import { defineConfig } from "astro/config";
 import svelte from "@astrojs/svelte";
-import tailwind from "@astrojs/tailwind";
+import tailwindcss from "@tailwindcss/vite";
 import sitemap from "@astrojs/sitemap";
 import node from '@astrojs/node';
 import icon from "astro-icon";
@@ -16,12 +16,12 @@ function raiseWatcherListenerLimit() {
 
 export default defineConfig({
     site: 'https://fluxaz.org',
-    integrations: [svelte(), tailwind(), sitemap(), icon()],
+    integrations: [svelte(), sitemap(), icon()],
     output: 'server',
     adapter: node({
         mode: 'standalone',
     }),
     vite: {
-        plugins: [raiseWatcherListenerLimit()],
+        plugins: [tailwindcss(), raiseWatcherListenerLimit()],
     },
 });
