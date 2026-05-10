@@ -16,6 +16,9 @@ function raiseWatcherListenerLimit() {
 
 export default defineConfig({
     site: 'https://fluxaz.org',
+    devToolbar: {
+        enabled: false,
+    },
     integrations: [svelte(), sitemap(), icon()],
     output: 'server',
     adapter: node({
