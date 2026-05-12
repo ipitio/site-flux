@@ -16,6 +16,9 @@ function raiseWatcherListenerLimit() {
 
 export default defineConfig({
     site: 'https://fluxaz.org',
+    build: {
+        inlineStylesheets: 'always',
+    },
     devToolbar: {
         enabled: false,
     },
