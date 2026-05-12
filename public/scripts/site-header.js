@@ -1,6 +1,8 @@
 (() => {
   const HEADER_SELECTOR = "[data-site-header]";
   const MENU_ANIMATION_MS = 320;
+  const HIDE_SCROLL_TOP = 120;
+  const REVEAL_SCROLL_DISTANCE = 72;
 
   const normalizePath = (path) => {
     if (!path || path === "/") {
@@ -65,6 +67,8 @@
     let lastScrollTop = 0;
     let suppressHideUntil = 0;
     let menuCloseTimer = 0;
+    let isHeaderHidden = false;
+    let hiddenScrollAnchor = 0;
 
     const clearMenuCloseTimer = () => {
       if (menuCloseTimer) {
@@ -114,22 +118,34 @@
     };
 
     const updateScrollState = () => {
-      const nextScrollTop = window.scrollY || document.documentElement.scrollTop;
+      const nextScrollTop = Math.max(window.scrollY || document.documentElement.scrollTop, 0);
       const isAtTop = nextScrollTop < 8;
       const isCompact = nextScrollTop > 20;
       const hideSuppressed = Date.now() < suppressHideUntil;
-      let isHidden = false;
+      const isScrollingDown = nextScrollTop > lastScrollTop;
+      const isScrollingUp = nextScrollTop < lastScrollTop;
 
-      if (!isAtTop && !hideSuppressed && !isMenuOpen) {
-        if (nextScrollTop > lastScrollTop && nextScrollTop > 120) {
-          isHidden = true;
+      if (isAtTop || hideSuppressed || isMenuOpen) {
+        isHeaderHidden = false;
+        hiddenScrollAnchor = nextScrollTop;
+      } else if (isScrollingDown && nextScrollTop > HIDE_SCROLL_TOP) {
+        isHeaderHidden = true;
+        hiddenScrollAnchor = nextScrollTop;
+      } else if (isHeaderHidden) {
+        if (isScrollingUp && hiddenScrollAnchor - nextScrollTop >= REVEAL_SCROLL_DISTANCE) {
+          isHeaderHidden = false;
+          hiddenScrollAnchor = nextScrollTop;
+        } else if (!isScrollingUp) {
+          hiddenScrollAnchor = Math.max(hiddenScrollAnchor, nextScrollTop);
         }
+      } else {
+        hiddenScrollAnchor = nextScrollTop;
       }
 
       header.classList.toggle("is-at-top", isAtTop);
       header.classList.toggle("is-compact", isCompact);
-      header.classList.toggle("is-hidden", isHidden);
-      lastScrollTop = Math.max(nextScrollTop, 0);
+      header.classList.toggle("is-hidden", isHeaderHidden);
+      lastScrollTop = nextScrollTop;
     };
 
     const handleResize = () => {

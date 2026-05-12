@@ -59,6 +59,22 @@ textarea {
   font: inherit;
 }
 
+a[href],
+button:not(:disabled),
+summary,
+select:not(:disabled),
+input:is([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [type="radio"]):not(:disabled),
+[role="button"]:not([aria-disabled="true"]) {
+  cursor: pointer;
+}
+
+button:disabled,
+select:disabled,
+input:is([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [type="radio"]):disabled,
+[aria-disabled="true"] {
+  cursor: not-allowed;
+}
+
 :focus-visible {
   outline: 2px solid rgba(245, 158, 11, 0.78);
   outline-offset: 3px;
