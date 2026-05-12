@@ -1,6 +1,5 @@
 (() => {
   const HEADER_SELECTOR = "[data-site-header]";
-  const MENU_ANIMATION_MS = 320;
   const HIDE_SCROLL_TOP = 120;
   const REVEAL_SCROLL_DISTANCE = 72;
 
@@ -50,6 +49,12 @@
     syncThemeIcons(header);
     syncActiveLinks(header);
 
+    const menu = header.querySelector("[data-mobile-menu]");
+
+    if (menu) {
+      menu.hidden = false;
+    }
+
     if (header.dataset.bound === "true") {
       return;
     }
@@ -57,7 +62,6 @@
     header.dataset.bound = "true";
 
     const frame = header.querySelector("[data-site-header-frame]") || header;
-    const menu = header.querySelector("[data-mobile-menu]");
     const menuToggle = header.querySelector("[data-menu-toggle]");
     const themeToggle = header.querySelector("[data-theme-toggle]");
     const openIcon = header.querySelector("[data-menu-icon='open']");
@@ -66,42 +70,12 @@
     let isMenuOpen = false;
     let lastScrollTop = 0;
     let suppressHideUntil = 0;
-    let menuCloseTimer = 0;
     let isHeaderHidden = false;
     let hiddenScrollAnchor = 0;
 
-    const clearMenuCloseTimer = () => {
-      if (menuCloseTimer) {
-        window.clearTimeout(menuCloseTimer);
-        menuCloseTimer = 0;
-      }
-    };
-
-    const finishClosingMenu = () => {
-      clearMenuCloseTimer();
-      header.classList.remove("is-menu-closing");
-
-      if (menu && !isMenuOpen) {
-        menu.hidden = true;
-      }
-    };
-
     const setMenuState = (nextValue) => {
-      clearMenuCloseTimer();
       isMenuOpen = nextValue;
-
-      if (menu) {
-        menu.hidden = false;
-      }
-
-      if (isMenuOpen) {
-        header.classList.add("is-menu-open");
-        header.classList.remove("is-menu-closing");
-      } else {
-        header.classList.remove("is-menu-open");
-        header.classList.add("is-menu-closing");
-        menuCloseTimer = window.setTimeout(finishClosingMenu, MENU_ANIMATION_MS);
-      }
+      header.classList.toggle("is-menu-open", isMenuOpen);
 
       if (menuToggle) {
         menuToggle.setAttribute("aria-expanded", String(isMenuOpen));
