@@ -109,7 +109,7 @@ input:is([type="button"], [type="submit"], [type="reset"], [type="checkbox"], [t
 }
 
 .eyebrow {
-  @apply text-[0.68rem] font-bold uppercase tracking-[0.28em] text-amber-700 dark:text-amber-300;
+  @apply text-[0.68rem] font-bold uppercase tracking-[0.28em] text-amber-800 dark:text-amber-300;
 }
 
 .text-balance {

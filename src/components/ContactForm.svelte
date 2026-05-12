@@ -167,7 +167,7 @@
       </div>
     {/if}
 
-    <button class="inline-flex w-full items-center justify-center rounded-full bg-amber-700 px-5 py-3 text-base font-semibold text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-600 disabled:cursor-not-allowed disabled:bg-amber-800/60" disabled={submitState === "sending"} type="submit">
+    <button class="inline-flex w-full items-center justify-center rounded-full bg-amber-700 px-5 py-3 text-base font-semibold text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-800 disabled:cursor-not-allowed disabled:bg-amber-900/60" disabled={submitState === "sending"} type="submit">
       {submitState === "sending" ? "Sending..." : "Send Message"}
     </button>
   </div>

@@ -68,7 +68,7 @@ function isActive(href: string) {
         {items.map((item) => (
           <a
             aria-current={isActive(item.href) ? "page" : undefined}
-            class="site-header__link rounded-full px-4 py-2 text-sm font-semibold text-[var(--muted)] hover:bg-black/5 hover:text-amber-700 dark:hover:bg-white/5 dark:hover:text-amber-200"
+            class="site-header__link rounded-full px-4 py-2 text-sm font-semibold text-[var(--muted)] hover:bg-black/5 hover:text-amber-800 dark:hover:bg-white/5 dark:hover:text-amber-200"
             data-active={isActive(item.href) ? "true" : undefined}
             data-nav-link
             href={item.href}
@@ -83,8 +83,9 @@ function isActive(href: string) {
         {
           ctaHref && (
             <a
-              class="hidden h-11 items-center justify-center rounded-full bg-amber-600 px-4 py-2 text-sm font-semibold leading-none text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-500 md:inline-flex"
+              class="hidden h-11 items-center justify-center rounded-full bg-amber-800 px-4 py-2 text-sm font-semibold leading-none text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-900 md:inline-flex"
               href={ctaHref}
+              style="color: rgb(255 255 255); -webkit-text-fill-color: rgb(255 255 255);"
             >
               {ctaLabel}
             </a>
@@ -128,8 +129,9 @@ function isActive(href: string) {
           {
             ctaHref && (
               <a
-                class="mb-2 inline-flex items-center justify-center rounded-2xl bg-amber-600 px-4 py-3 text-sm font-semibold text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-500"
+                class="mb-2 inline-flex items-center justify-center rounded-2xl bg-amber-800 px-4 py-3 text-sm font-semibold text-white transition-[transform,background-color] duration-200 hover:-translate-y-0.5 hover:bg-amber-900"
                 href={ctaHref}
+                style="color: rgb(255 255 255); -webkit-text-fill-color: rgb(255 255 255);"
               >
                 {ctaLabel}
               </a>
@@ -139,7 +141,7 @@ function isActive(href: string) {
           {items.map((item) => (
             <a
               aria-current={isActive(item.href) ? "page" : undefined}
-              class="site-header__link rounded-2xl px-4 py-3 text-sm font-semibold text-[var(--muted)] hover:bg-black/5 hover:text-amber-700 dark:hover:bg-white/5 dark:hover:text-amber-200"
+              class="site-header__link rounded-2xl px-4 py-3 text-sm font-semibold text-[var(--muted)] hover:bg-black/5 hover:text-amber-800 dark:hover:bg-white/5 dark:hover:text-amber-200"
               data-active={isActive(item.href) ? "true" : undefined}
               data-nav-link
               href={item.href}
@@ -220,7 +222,7 @@ function isActive(href: string) {
   }
 
   .site-header__link[data-active="true"] {
-    background: rgb(217 119 6);
+    background: rgb(180 83 9);
     color: rgb(255 255 255);
     box-shadow: 0 18px 40px rgba(120, 53, 15, 0.22);
     cursor: default;
