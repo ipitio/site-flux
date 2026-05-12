@@ -72,6 +72,7 @@ function isActive(href: string) {
             data-active={isActive(item.href) ? "true" : undefined}
             data-nav-link
             href={item.href}
+            tabindex={isActive(item.href) ? -1 : undefined}
           >
             {item.label}
           </a>
@@ -142,6 +143,7 @@ function isActive(href: string) {
               data-active={isActive(item.href) ? "true" : undefined}
               data-nav-link
               href={item.href}
+              tabindex={isActive(item.href) ? -1 : undefined}
             >
               {item.label}
             </a>
@@ -221,6 +223,8 @@ function isActive(href: string) {
     background: rgb(217 119 6);
     color: rgb(255 255 255);
     box-shadow: 0 18px 40px rgba(120, 53, 15, 0.22);
+    cursor: default;
+    pointer-events: none;
   }
 
   .site-header__menu {
