@@ -38,8 +38,13 @@ const pageTitle =
     <meta content={Astro.generator} name="generator" />
     <meta content={description} name="description" />
     <meta content="#f6eedb" name="theme-color" />
+    <meta content="yes" name="mobile-web-app-capable" />
+    <meta content="yes" name="apple-mobile-web-app-capable" />
+    <meta content="default" name="apple-mobile-web-app-status-bar-style" />
+    <meta content={organization.shortName} name="apple-mobile-web-app-title" />
     <link href={faviconImage} rel="icon" type="image/png" />
     <link href={touchIcon} rel="apple-touch-icon" />
+    <link href="/manifest.webmanifest" rel="manifest" />
     <link href={canonical} rel="canonical" />
     <link href="/sitemap-index.xml" rel="sitemap" />
     <title>{pageTitle}</title>
@@ -78,6 +83,24 @@ const pageTitle =
         document.addEventListener("astro:after-swap", syncTheme);
         document.addEventListener("astro:page-load", syncTheme);
         window.__siteThemeListenersBound = true;
+      }
+    </script>
+
+    <script is:inline>
+      if (!window.__sitePwaRegistered) {
+        window.__sitePwaRegistered = true;
+
+        const registerServiceWorker = () => {
+          if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register("/sw.js").catch(() => undefined);
+          }
+        };
+
+        if (document.readyState === "complete") {
+          registerServiceWorker();
+        } else {
+          window.addEventListener("load", registerServiceWorker, { once: true });
+        }
       }
     </script>
   </head>
